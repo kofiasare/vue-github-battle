@@ -19,3 +19,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# firebase stuff
+.firebase
+.firebaserc
+firebase.json
+vue.config.js
