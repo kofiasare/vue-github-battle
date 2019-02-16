@@ -17,15 +17,8 @@ export default {
         "Ruby",
         "Java",
         "CSS",
-        "Swift",
         "Python",
-        "Elixir",
         "Vue",
-        "Go",
-        "Rust",
-        "Haskell",
-        "Scala",
-        "Erlang",
-        "Solidity"
+        "PHP",
     ],
 };
