@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- Loading -->
-    <Loading v-if="loading" text="Loading" speed="200"/>
+    <Loading v-if="loader.loading" :text="loader.text" :speed="loader.speed"/>
 
     <!-- Battle Results -->
-    <div v-if="!loading" id="battle-results">
+    <div v-if="!loader.loading" id="battle-results">
       <!-- Winner -->
       <div>
         <div class="player">
@@ -64,13 +64,14 @@
 </template>
 
 <script>
-import Loading from "./loading";
+import staticData from "../static";
+import Loading from "./loading.vue";
 
 export default {
   components: { Loading },
   data() {
     return {
-      loading: true,
+      loader: staticData.loader,
       players: {}
     };
   },
@@ -99,7 +100,7 @@ export default {
 
     handleErr(err) {
       console.warn(err);
-      this.loading = false;
+      this.loader.loading = false;
     }
   },
 
@@ -114,14 +115,11 @@ export default {
     )
       .then(players => {
         players.forEach(player => (player.score = this.calcScore(player)));
-        players.sort((loser, winner) => {
-          return winner.score - loser.score;
-        });
-
+        players.sort((loser, winner) => winner.score - loser.score);
         [this.players.winner, this.players.loser] = players;
-        this.loading = false;
       })
-      .catch(err => this.handleErr("Error"));
+      .then(() => (this.loader.loading = false))
+      .catch(err => this.handleErr(err));
   }
 };
 </script>

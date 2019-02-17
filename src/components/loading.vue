@@ -7,15 +7,8 @@
 <script>
 export default {
   props: {
-    speed: {
-      type: String,
-      required: true
-    },
-
-    text: {
-      type: String,
-      required: true
-    }
+    speed: { type: Number, required: true },
+    text: { type: String, required: true }
   },
 
   data() {

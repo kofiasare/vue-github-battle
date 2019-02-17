@@ -6,19 +6,25 @@ export default {
     },
 
     errors: {
-        errorMsg: 'Looks like there was error. Check that user exist on Github'
+        errorMsg: 'Looks like there was error. Check that user exist on Github',
     },
 
     languages: [
-        "All",
-        "C",
-        "C++",
-        "Javascript",
-        "Ruby",
-        "Java",
-        "CSS",
-        "Python",
-        "Vue",
-        "PHP",
+        'All',
+        'C',
+        'C++',
+        'Javascript',
+        'Ruby',
+        'Java',
+        'CSS',
+        'Python',
+        'Vue',
+        'PHP',
     ],
+
+    loader: {
+        loading: true,
+        text: 'Loading',
+        speed: 200,
+    },
 };

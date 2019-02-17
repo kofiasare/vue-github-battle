@@ -13,10 +13,10 @@
     </div>
 
     <!-- loading -->
-    <Loading v-if="loading" text="Loading" speed="200"/>
+    <Loading v-if="loader.loading" :text="loader.text" :speed="loader.speed"/>
 
     <!-- search resuts -->
-    <div v-if="!loading" id="results">
+    <div v-if="!loader.loading" id="results">
       <ul>
         <li class="item" v-for="(repo, i) in repos" :key="i">
           <div class="rank">#{{i+1}}</div>
@@ -44,17 +44,17 @@ export default {
   components: { Loading },
   data() {
     return {
-      loading: false,
       selected: "All",
+      repos: [],
       languages: staticData.languages,
-      repos: []
+      loader: staticData.loader
     };
   },
 
   methods: {
     fetchPopularRepos(language) {
       this.selected = language;
-      this.loading = true;
+      this.loader.loading = true;
       this.$http
         .get(
           window.encodeURI(
@@ -64,12 +64,12 @@ export default {
           )
         )
         .then(data => {
-          this.loading = false;
+          this.loader.loading = false;
           this.repos = data.body.items;
         })
         .catch(err => {
-          console.log(err);
-          this.loading = false;
+          console.warn(err);
+          this.loader.loading = false;
         });
     }
   },
